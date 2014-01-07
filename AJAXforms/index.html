@@ -1,0 +1,54 @@
+<!--index.html -->
+
+
+<!DOCTYPE html>
+
+<head>
+    <title> Angular Forms</title>
+
+    <!-- LOAD BOOTSTRAP  CSS --->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+    <!-- LOAD jQuery --->
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <!-- Process Form with Ajax (old) -->
+    <script>
+        // We will process our form here
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="col-sm-6 col-s-offset-3">
+
+
+
+        <!-- PAGE TITLE -->
+        <div class="page-header">
+            <h1><span class="glyphicon glyphicon-tower"></span>Submitting Forms with Angular</h1>
+        </div>
+
+
+        <!-- SHOW ERROR/SUCCESS MESSAGES -->
+        <div id="messages"></div>
+
+        <!-- FORM -->
+        <form>
+            <!-- NAME -->
+            <div id="name-group" class="form-group">
+                <label>Superhero Alias</label>
+                <input type="text" name="superheroAlias" class="form-control" placeholder="Bruce Wayne">
+                <span class="help-block"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-success btn-lg btn block">
+                <span class"glyphicon glyphicon-flash"></span> Submit!
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
