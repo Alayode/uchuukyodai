@@ -28,4 +28,5 @@ $Scope: The "glue between the application controller and the view. Basically var
 $http: The Angular service that will help us do our POST request. For more information, check our the Angular Documentation.
 
 
+
 I will expand on this as I continue on my project and share my opinions as well.
