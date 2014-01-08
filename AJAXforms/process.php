@@ -1,5 +1,6 @@
 //process.php
-
+// $scope.errorfamilyMemberName = data.errors.familyMemberName;
+// $scope.errorSuperhero = data.errors.superheroAlias;
 <?php
 
 $errors  = array();   //array to hold validation errors
@@ -11,8 +12,8 @@ $data    = array();   //array to pass back data
     if (empty($_POST['name']))
         $errors['name'] = 'Name is required.';
     
-    if (empty($_POST['superheroAlias']))
-    	$errors['superheroAlias'] = 'Superhero alias is required.';
+    if (empty($_POST['familyMemberName']))
+    	$errors['familyMemberName'] = 'family Member Name is required.';
     		
  
  // return a response =======================================================================================

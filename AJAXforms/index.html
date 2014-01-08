@@ -28,21 +28,21 @@
                 //process the form
                 $scope.processForm = function() {
                     $http({
-                        method : 'POST ',
-                        url : 'process.php',
-                        data: $.param($scope.formData), // pass in data as strings
+                        method  : 'POST ',
+                        url     : 'process.php',
+                        data    : $.param($scope.formData), // pass in data as strings
                         // set the headers so angular passing info as form data (not)
                         headers : {'Content-Type': 'application/x-www-form-urlencoded' }
                     })
 
-                            .success( function(data){
+                            .success(function(data){
                                 console.log(data);
 
                                 if (!data.success){
 
                                     //if not successful, bind errors to error variables
                                     $scope.errorName = data.errors.name;
-                                    $scope.errorSuperhero = data.errors.superheroAlias;
+                                    $scope.errorfamilyMemberName = data.errors.familyMemberName;
 
                                 } else {
                                     // if successful , bind sucess message to message
@@ -74,7 +74,7 @@
         <div id="messages">{{ message }}</div>
 
         <!-- FORM -->
-        <form>
+        <form ng-submit="processForm()">
             <!-- Name -->
             <div id="name-group" class="form-group" ng-class= "{'has-error' : errorName }">
                 <label>Name</label>
@@ -82,10 +82,10 @@
                 <span class="help-block" ng-show="errorName">{{ errorName }}</span>
             </div>
                 <!-- Family MemberName -->
-            <div id="familyMemberName" class="form-group" ng-class="{'has-error' : errorName }">
+            <div id="familyMemberName" class="form-group" ng-class="{'has-error' : errorfamilyMemberName }">
                   <label>Family MemberName</label>
                   <input type="text" name="familyMemberName" class="form-control" placeholder="Utsunomiya" ng-model="formData.familyMemberName">
-                <span class="help-block" ng-show="errorSuperhero">{{ errorSuperhero }}</span>
+                <span class="help-block" ng-show="errorMembername">{{ errorMembername }}</span>
             </div>
 
             <!-- Submit Button -->
@@ -96,9 +96,9 @@
             <!-- SHOW DATA INPUTS AS THEY ARE GETTING TYPED -->
 
 
-
+            <pre> {{ formData }}</pre>
         </form>
-        <pre> {{ formData }}</pre>
+</div>
     </div>
 </div>
 </body>
