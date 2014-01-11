@@ -3,7 +3,7 @@ Chris Samuel
 
 
 
-
+-->
 
 
 <!DOCTYPE html>
@@ -74,9 +74,12 @@ Chris Samuel
 
     <input ng-model = "movie.Quantity">
     <span> {{ movie.Price | currency }}</span>
-    <span> {{ movie.Price * movie.Quantity | currency }}</span>
+   <span> {{ movie.Price * movie.Quantity | currency }}</span>
     <button ng-click="remove($index)" >Remove</button>
+    {{ movie.Quantity }}
+
 
 </div>
+Total {{ movie.Quantity * 1.75 }}
 </body>
 </html>
