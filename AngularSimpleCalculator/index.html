@@ -42,16 +42,20 @@ button clicks , and how to scoped variables can work together in an application.
             <button name="button7" class="numberbutton" value="7" ng-click='updateOutput(7)'>7</button>
             <button name="button8" class="numberbutton" value="8" ng-click='updateOutput(8)'>8</button>
             <button name="button9" class="numberbutton" value="9" ng-click='updateOutput(9)'>9</button>
-            <button name="btnPlus" class="operationbutton" ng-click='add()'>+</button>
+            <button name="buttonPlus" class="operationbutton" ng-click='add()'>+</button>
             <button name="button9" class="numberbutton" value="9" ng-click='updateOutput(0)'>0</button>
             <button name="button0" class="numberbutton" value="" ng-click="clear()">CLEAR</button>
 
 
         </div>
+    </div>
+    <!-- Scoped variables displayed for debugging -->
+    <p>pendingOperation: {{pendingOperation}}
+        <br>lastOperation: {{lastOperation}}
+        <br>runningTotal: {{runningTotal}}
+        <br>pendingValue: {{pendingValue}}
+        <br>newNumber: {{newNumber}}</p>
 
-
-
-            </div>
     </div>
 </body>
 </html>
