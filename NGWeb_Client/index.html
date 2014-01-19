@@ -28,11 +28,59 @@
         <span class="icon-bar"></span>
         </button> -->
 
+         <a class="brand" href="index.html"></a>
 
+            <ul class="nav">
+                <li class="divider-vertical"></li>
+            </ul>
 
+            <div class="btn-group">
+                <button id="new_log" class="btn btn-primary">New Note Entry</button>
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a onclick="showDelete('myModal');">New Notes</a></li>
+                    <li><a onclick="showDeleteModal('myTagModal');">New Tag</a></li>
+                </ul>
             </div>
+
+            <div class="pull-right btn group">
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="icon-user icon-white"></i>
+                    Username
+                    <strong class="caret" ></strong>
+
+                </a>
+
+
+            <div class="dropdown-menu user_dropdown_menu">
+                <forn>
+                    <fieldset>
+                        <legend>Sign in</legend>
+                        <label>Username</label>
+                        <input type="text" placeholder="Your Username ... ">
+
+                        <label>Password</label>
+                        <input type="password" placeholder="Your password..."><br/>
+
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </fieldset>
+                </forn>
+                     </div>
+                </div>
+         </div>
+   </div>
+</div>
+
+<!-- :eft Navigation -->
+<div class="container-left">
+    <div class="well conatiner-scroll">
+            <input class="filter_search" id="notebooks_filter_search" type="text" placeholder="Filter Notebooks ... ">
     </div>
-        </div>
+</div>
+
+
 
 
 </body>
