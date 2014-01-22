@@ -135,7 +135,7 @@
             repeat("template_note_tag", "load_note_tags", note , "notes");
         }
 
-
+z
         //Load attachments
         $('#load_note_attachments').html("");
 
@@ -149,3 +149,56 @@
 
 
     }
+/**
+ * Repeat function that can load a list of various data
+ * @param {type} source_id id attribute of template tag
+ * @param {type} target_id  id attribute  of container  tag (where data will be placed)
+ * @param {type} property data.property object
+ * @returns replaces template with data and puts it in the right place
+ * */
+
+
+    function repeat(source_id, target_id, data, property){
+    var template = getTemplate(source_id);
+    var html = "";
+
+    $.each(data[property], function(i,item){
+
+        var customItem = item;
+        customItem.clicked = "";
+
+        if(property === "tag"){
+            savedTags = savedTags.concat(item.name);
+
+            //Check cookie content and select tags that need to be selected
+            if($.cookie(filtersCookieName) !== undefined){
+                var obj = $.parseJSON($.cookie(filtersCookieName)) ["list2_index"];
+
+                if(obj !== undefined && obj[item.name] !== undefined){
+                    customItem.clicked = "multilist_clicked";
+                }
+            }
+        } else if(property === "notebook"){
+            savedNoteBooks = savedNotes.concat(item.name);
+
+            //Check cookie content and select tags that need to be selected
+         if($.cookie(filtersCookieName) !== undefined){
+                var obj = $.parseJSON($.cookie(filterssCookieName))["List_index"];
+
+            if(obj !== undefined && onj[item.name] !== undefined){
+                customItem.clicked = "multilist_clicked";
+            }
+        }
+     }
+
+        html = Mustache.to_html(template, customItem);
+
+        $('#' + target_id). append(html);
+
+     });
+
+        $('#' + target_id).trigger('dataloaded', null);
+
+
+
+}
