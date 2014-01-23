@@ -231,8 +231,83 @@ z
             attachments : []
         };
 
+        // Append attachments
+        if(item.attachments.length !== 0 ){
+
+            $.each(item.attachments, function(j, attachment){
+
+                // Skip non image attachments
+                if(!isImage(attachment.contentType)){
+                    return;
+                }
+
+            // Create custom attribute thumbnail object
+                newItem.attachments.push(
+                    {imageUrl: serviceurl + "attachments/" + item.id + "/" + attachment.fileName + "thumbnail"}
+                );
+
+            });
+        }
+
+        html = Mustachace.to_html(template, newItem);
+        $('#'+target_id).append(html);
 
     });
 
 }
+/***
+ * Append the last log that enables us to load more logs
+ * @param {type} target_id div id where last log will be appended
+ * @returns {undefined}
+ *
+ */
+
+ function appendAddMoreLog(target_id){
+    //Create load more Log
+    var template = getTemplate("template_log_add_more");
+
+    var loadMoreLog = {
+        page: page + 1
+    };
+
+    var html = Mustache.to_html(template, loadMoreLog);
+    $('#'+ target_id).append(html);
+}
+
+/**
+ *
+ *
+ *
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
