@@ -231,26 +231,6 @@ z
             attachments : []
         };
 
-        // Append attachments
-        if(item.attachments.length !== 0 ){
-
-            $.each(item.attachments, function(j, attachment){
-
-                // Skip non image attachments
-                if(!isImage(attachment.contentType)){
-                    return;
-                }
-
-            // Create custom attribute thumbnail object
-                newItem.attachments.push(
-                    {imageUrl: serviceurl + "attachments/" + item.id + "/" + attachment.fileName + "thumbnail"}
-                );
-
-            });
-        }
-
-        html = Mustachace.to_html(template, newItem);
-        $('#'+target_id).append(html);
 
     });
 
