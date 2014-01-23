@@ -202,3 +202,57 @@ z
 
 
 }
+
+
+/**
+ * Show notes in the middle section. Some of the data must be formatted to be shown properly
+ * @param {type} source_id id attribute of template tag
+ * @param {type} target_id id attribute of container tag (where data will be placed)
+ * @param {type} data data in JSON format
+ * @returns replaces template with data and puts it in the right place
+ *
+ * */
+
+    function repeatLogs (source_id, target_id, data){
+    var template = getTemplate(source_id);
+    var html = "";
+
+
+    // Go through all the logs
+    $.each(data,function(i,item){
+        savedLogs[item.id] = item;
+
+        //Build customized log object
+        var newItem = {
+            description: returnFirstXWords(item.desription, 40),
+            owner: item.owner,
+            createdDate: formatDate(item.createdDate),
+            id: item.id,
+            attachments : []
+        };
+
+        // Append attachments
+        if(item.attachments.length !== 0 ){
+
+            $.each(item.attachments, function(j, attachment){
+
+                // Skip non image attachments
+                if(!isImage(attachment.contentType)){
+                    return;
+                }
+
+            // Create custom attribute thumbnail object
+                newItem.attachments.push(
+                    {imageUrl: serviceurl + "attachments/" + item.id + "/" + attachment.fileName + "thumbnail"}
+                );
+
+            });
+        }
+
+        html = Mustachace.to_html(template, newItem);
+        $('#'+target_id).append(html);
+
+    });
+
+}
+
