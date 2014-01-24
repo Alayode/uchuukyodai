@@ -263,22 +263,116 @@ z
  */
 
  function appendAddMoreLog(target_id){
-    //Create load more Log
-    var template = getTemplate("template_log_add_more");
+    //Create load more Note
+    var template = getTemplate("template_note_add_more");
 
-    var loadMoreLog = {
+    var loadMoreNote = {
         page: page + 1
     };
 
-    var html = Mustache.to_html(template, loadMoreLog);
+    var html = Mustache.to_html(template, loadMoreNote);
     $('#'+ target_id).append(html);
 }
 
 /**
- *
- *
+ * Get all attachments from specific log, put them in template and append them to the end of the note
+ * @param {type} source_id div id where template is positioned
+ * @param {type} data JSON object that holds attachments
+ * @param {type} logId of the log we want attachments to
  *
  */
+
+function repeatAttachments(source_id, target_id, data, logId){
+
+    var template = getTemplate(source_id);
+    var html = "";
+    var notImages = new array();
+
+    $.each(data,  function(i,item){
+
+        //Create customized Attachment object
+        var newItem = {
+            imageUrl: serviceurl + "attachments/" + logId + "/" + item.fileName,
+            fileName: item.fileName,
+            imageWidth: 200,
+            imageHeight: 200
+
+        };
+
+
+        // Add items  that are not images to array
+        if(!isImage(item.contentType)){
+            notImages =  notImages.concat(newItem);
+            return;
+
+
+        }
+
+        html = Mustache.to_html(template, newItem);
+        $('#' + target_id).append(html);
+
+            // Append elements that are not images
+            template = getTemplate("template_log_attachment_not_image");
+
+            $,each(notImages, function(i,file){
+                html = Mustache.to_html(template,file);
+
+                $('#' + target_id).append(html);
+            });
+
+
+        });
+
+}
+    /**
+     * Return raw template
+     * @param {type} id div that holds the template
+     * @returns template as a string
+     */
+
+        function getTemplate(id){
+            $.ajaxSetup({async:false});
+            var template =  "";
+
+            $('template_container').load(templates + '#' + id, function(response, status, xhr){
+                template = $('#' + id).html();
+            });
+
+        return template;
+
+        }
+
+
+        /**
+         * Get Add modal windows from remote site, copy it to index and then show it
+         * @param {type} modalId id of the modal windows
+         * @param {type} name name of the elsemntt to be deleted
+         * */
+
+
+       function showAddModal(modalId){
+         $('#modal_container').load(modalWindows + ' #' + modalId, function(responce, status, xhr){
+            $('#' + modalId).modal('toggle');
+         });
+        }
+
+        /**
+         * Get Edit notebook modal windows from the remote site, copy it and the show it
+         * @param {type} modalId id of the modal windows
+         * @param {type} name name of the Notebook
+         *
+         * */
+
+        function showEditNoteBookModal(modalId, name){
+            $('#modal_conatiner').load(modalWindows + '#' + modalId, function(response,status,xhr){
+                $('#' + modalId + '[name=name]').val(name);
+                $('#' + modalId + '[name=owner]').val("boss");
+                $('#' + modalId).modal('toggle');
+
+            });
+        }
+
+
 
 
 
