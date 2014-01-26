@@ -11,7 +11,7 @@
  *
  * **/
 
-$(document.ready(function(){
+$(document).ready(function(){
     //wait for the data to load
     $('#load_notebooks').on('dataSelected',function(e,data){
         //parseSearchQuery();
@@ -23,7 +23,7 @@ $(document.ready(function(){
         //parseSearchQuery();
         generateSearchQuery(data);
     });
-});
+})
 
 /*
 * Start listening for Search button clicks. When button is pressed, parse input and create search
@@ -116,4 +116,3 @@ function generateSearchQuery(dataArray){
 
     }
 }
-
