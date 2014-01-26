@@ -375,11 +375,11 @@ function repeatAttachments(source_id, target_id, data, logId){
         /***
          * Get Delete modal windows from the remote site, copy it to index and then show it
          *@param {type} modalId id of the modal windows
-         *@param {type} nam name of the element to be deleted
-             * **/
+         *@param {type} name name of the element to be deleted
+         ***/
 
 
-            function showDelete the Modal (modalId,name){
+            function showDeleteModal (modalId,name){
                 $('modal_container').load(modalWindows + ' #' + modalId, function(response, status, xhr){
                        $('#' + modalId + ' [name = id]').val(name);
                         $('#' + modalId).modal('toggle');
