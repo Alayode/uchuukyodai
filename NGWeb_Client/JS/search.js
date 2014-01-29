@@ -1,67 +1,74 @@
 /**
  * Created by azuramei on 1/24/14.
+ * Using jQuery to load data
  */
-/*
+
+
+/**
+ *
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
- */
+ *
+ * **/
 
 $(document).ready(function(){
-    // Wait for dataload
-    $('#load_logbooks').on('dataselected', function(e, data){
+    //wait for the data to load
+    $('#load_notebooks').on('dataSelected',function(e,data){
         //parseSearchQuery();
         generateSearchQuery(data);
     });
 
-    // Wait for dataload
-    $('#load_tags').on('dataselected', function(e, data){
+    //wait for the data to load then load the tags
+    $('#load_tags').on('dataSelected', function(e, data){
         //parseSearchQuery();
         generateSearchQuery(data);
     });
-});
+})
 
 /*
- * Start listening for Search button clicks. When button is pressed, parse input and create search query
- * @returns {undefined}
- */
-function activateSearch(){
-    // Simple search
-    $("#search-button").click(function(e){
-        var searchQuery = $("#search-query").val();
+* Start listening for Search button clicks. When button is pressed, parse input and create search
+* query @returns {undefined}
+*
+*/
 
-        if(searchQuery === ""){
-            page = 1;
-            loadLogs(page);
+ function activateSearch(){
+     //Simple search
+     $("search-button").click(function(e){
+         var searchQuery = $("search-query").val();
 
-        } else {
-            searchForLogs('search=' + searchQuery);
-        }
-    });
-}
+         if(search === ""){
+             page = 1;
+             loadLogs(page);
 
-function searchForLogs(searchQuery) {
-    searchQuery = serviceurl + 'logs?' + searchQuery + 'limit=' + numberOfLogsPerLoad + '&page=' + page;
-    console.log(searchQuery);
+         } else {
+             searchForNotes('search=' + searchQuery);
+         }
+     });
+ }
+ function searchForNotes(searchQuery){
+     searchQuery = serviceurl + 'notes?' + searchQuery + 'limit=' + numberofNotesPerLoad + '&page=' + page;
+     console.log(searchQuery);
 
-    // Load logs
-    $.getJSON(searchQuery, function(logs) {
-        $(".log-last").remove();
-        $(".log").remove();
-        repeatLogs("template_log", "load_logs", logs);
-        startListeningForLogClicks();
-    });
-}
+     //Load Notes
+     $.getJson(searchQuery, function(logs) {
+         $(".note-last").remove();
+         $(".note").remove();
+         repeatNotes("template_note","load_notes",notes);
+         startListeningForLogClicks();
+
+     });
+ }
 
 function buildSearchLanguage(value){
 
     var searchString = "";
-    var filterType = "";
-    var remainder = "";
+    var filterType   = "";
+    var remainder    = "";
 
-    var re = new RegExp("(tag:|logbook:|from:|to:)(.*)", "i");
+    var re = new RegExp("(tag:| logbook:| from:|to:)(.*)", "i");
     var searchParts = re.exec(value);
 
-    if(searchParts === null) {
+    if(searchParts === null){
         searchString = value;
 
     } else {
@@ -71,26 +78,31 @@ function buildSearchLanguage(value){
     }
 
     return [searchString, filterType, remainder];
+
+
 }
 
 function parseSearchQuery(){
-    var value = $("#search-query").val();
+    var value = $("search-query").val();
 
     var parsedStringParts = buildSearchLanguage(value);
     console.log(parsedStringParts);
 
-    while (parsedStringParts[1] !== "") {
-        parsedStringParts = buildSearchLanguage(parsedStringParts[2]);
-        //console.log(parsedStringParts);
-    }
+     while (parsedStringParts[1] !== ""){
+         parsedStringsParts = buildSearchLanguage(parsedStringParts[2]);
+         //console.log(parsedStringParts);
+
+     }
 }
+
 
 /**
  * Generate search input string and search query
- * @param {type} dataArray currently selected logbooks and tags
+ * @param {type} dataArray currently selected notebooks and tags
  * @returns {undefined}
- */
-function generateSearchQuery(dataArray) {
+ *  */
+
+function generateSearchQuery(dataArray){
     var value = $("#search-query").val();
     var queryString = "";
 
@@ -98,23 +110,9 @@ function generateSearchQuery(dataArray) {
 
     var newValue = parsedStringParts[0];
 
-    // Append general search to a search query
-    if(newValue !== ""){
+    //Append general search to a search query
+    if(newValue  !== ""){
         queryString += "search=" + newValue + '&';
-    }
 
-    // If at least one logbook is selected, append logbook part to a search query
-    if(dataArray['list'] !== undefined && dataArray['list'].length !== 0){
-        newValue += "logbook: " + dataArray['list'] + ' ';
-        queryString += "logbook=" + dataArray['list'] + '&';
     }
-
-    // If at least one tag is selected, append tag part to a search query
-    if(dataArray['list2'] !== undefined && dataArray['list2'].length !== 0){
-        newValue += "tag: " + dataArray['list2'] + ' ';
-        queryString += "tag=" + dataArray['list2'] + '&';
-    }
-
-    $("#search-query").val(newValue);
-    searchForLogs(queryString);
 }
