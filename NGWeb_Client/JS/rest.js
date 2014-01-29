@@ -379,7 +379,7 @@ function repeatAttachments(source_id, target_id, data, logId){
              * **/
 
 
-            function showDelete the Modal (modalId,name){
+            function showDeleteModal (modalId,name){
                 $('modal_container').load(modalWindows + ' #' + modalId, function(response, status, xhr){
                        $('#' + modalId + ' [name = id]').val(name);
                         $('#' + modalId).modal('toggle');
