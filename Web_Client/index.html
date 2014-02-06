@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Client Test</title>
+    <meta http-equiv="content-type" content="text/html charset=UTF-8">
+    <meta http-equiv="width=device-width, content=text/html initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" >
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <script src="JS/rest.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements  -->
+    <!-- [if lt IE 9]>
+        <script src"../assets/js/html5shiv.js"><script>
+        <! [endif]-->
+</head>
+
+<body>
+
+<!--- Header
+=========================================================== -->
+<div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+
+
+        <!-- <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button> -->
+
+         <a class="brand" href="index.html"></a>
+
+            <ul class="nav">
+                <li class="divider-vertical"></li>
+            </ul>
+
+            <div class="btn-group">
+                <button id="new_log" class="btn btn-primary">New Note Entry</button>
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a onclick="showDelete('myModal');">New Notes</a></li>
+                    <li><a onclick="showDeleteModal('myTagModal');">New Tag</a></li>
+                </ul>
+            </div>
+
+            <div class="pull-right btn group">
+                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="icon-user icon-white"></i>
+                    Username
+                    <strong class="caret" ></strong>
+
+                </a>
+
+
+            <div class="dropdown-menu user_dropdown_menu">
+                <forn>
+                    <fieldset>
+                        <legend>Sign in</legend>
+                        <label>Username</label>
+                        <input type="text" placeholder="Your Username ... ">
+
+                        <label>Password</label>
+                        <input type="password" placeholder="Your password..."><br/>
+
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </fieldset>
+                </forn>
+                     </div>
+                </div>
+         </div>
+   </div>
+</div>
+
+<!-- :eft Navigation -->
+<div class="container-left">
+    <div class="well conatiner-scroll">
+            <input class="filter_search" id="notebooks_filter_search" type="text" placeholder="Filter Notebooks ... ">
+    <ul class="multilist" id="load_notebooks">
+        <!-- <li class=multilist_header"><input class="filter_search" type="text" placeholder="NOTEBOOKS" /><a href="#myMmodal" title="Add New Logbook" data-toggle="model"><i class="icon-plus float_right float_right_padding"></i></a></li> -->
+
+        <!-- Template -->
+    </ul>
+        <input class="filter_search" id="tags_filter_search" type="text" placeholder="Filter Tags ..."/>
+        <ul class = "multilist" id="load_tags">
+            <!-- #add li html here #-->
+            <!--Template-->
+        </ul>
+        <ul class="multilist">
+            <li class="multilist_header">Created Since</li>
+        <li><span class="list3 multilist_item">Today</span></li>
+        <li><span class="list3 multilist_item">Yesterday</span></li>
+        <li><span class="list3 multilist_item">This Week</span></li>
+        <li><span class="list3 multilist_item">Last week</span></li>
+        <li><span class="list3 multilist_item">This Month</span></li>
+        <li><span class="list3 multilist_item">Last Month</span></li>
+        <li><span class="list3 multilist_item">This Year</span></li>
+        <li><span class="list3 multilist_item">Last Year</span></li>
+        <li><span class="list3 multilist_item">From <input type="text" /> To <input type="text"></span></li>
+
+        </ul>
+    </div>
+</div>
+
+<!--- List Of Notes -->
+<div class="container-middle">
+    <div id="load_notes" class="well container-scroll">
+        <div class="form-search input-append" id="form-search">
+            <input type="text" placeholder="Search..." id="search-query" class=" search_input">
+            <button id="search-button" class="btn">Search</button>
+        </div>
+    <!--Template -->
+    </div>
+</div>
+<!-- Log View -->
+<div class="container-right">
+    <div class="well container-scroll-last-one">
+
+        <div class="note_title">
+            <h5><span id="note_owner"></span>, <span id="log_date"></span><a class="log_show_details" href="#"></a>
+            <i class="icon-info-sign" ></i>Show details</a><i class="icon-trash float_right"></i> <i class="icon-pencil float_right
+                        float_right_padding"></i></h5>
+        </div>
+
+        <div class="log_details display-none">
+            <i title="Tags" class="icon-tags"></i><span id="load_note_tags"><span class="label label-info">tag</span>
+        <span class="label label-info">tag</span>
+        <span class="label label-info">tag <a href="#">&times;</a></span></span>
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
